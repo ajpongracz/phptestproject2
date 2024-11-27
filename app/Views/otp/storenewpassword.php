@@ -3,7 +3,7 @@
 <?= session()->getFlashdata('error') ?>
 <?= validation_list_errors() ?>
 
-<form action="/otp" method="post">
+<form action="/storenewpassword" method="post">
     <?= csrf_field() ?>
 
     <label for="email">Email</label>

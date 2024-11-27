@@ -8,10 +8,10 @@ use App\Controllers\OTP;
  */
 
  $routes->get('/', 'Home::index');
- $routes->get('otp', [OTP::class, 'index']);
- $routes->get('otp/new', [OTP::class, 'new']);
- $routes->post('storenewpassword', [OTP::class, 'storenewpassword']);
 
- //$routes->post('otp/store', [OTP::class, 'storenewpassword']);
+ $routes->
+
+
+
 
 ?>
