@@ -1,7 +1,7 @@
 <?php
 
 use CodeIgniter\Router\RouteCollection;
-use App\Controllers\OTP_Controller;
+use App\Controllers\OtpController;
 
 /**
  * @var RouteCollection $routes
@@ -9,8 +9,8 @@ use App\Controllers\OTP_Controller;
 
  $routes->get('/', 'Home::index');
 
- $routes->get('otp', [OTP_Controller::class, 'index']);
- $routes->get('otp/storenewpassword', [OTP_Controller::class, 'new']);
- $routes->post('otp', [OTP_Controller::class, 'store_pw_c']);
+ $routes->get('otp', [OtpController::class, 'index']);
+ $routes->get('otp/storenewpassword', [OtpController::class, 'new']);
+ $routes->post('otp', [OtpController::class, 'storePw']);
 
 ?>

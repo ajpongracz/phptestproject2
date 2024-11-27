@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
-use App\Models\OTP_Model;
+use App\Models\OtpModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
-class OTP_Controller extends BaseController {
+class OtpController extends BaseController {
 
     public function index() {
 
@@ -18,7 +18,7 @@ class OTP_Controller extends BaseController {
         return view('otp/storenewpassword');
     }
 
-    public function store_pw_c() {
+    public function storePw() {
 
         helper('form');
 
@@ -38,7 +38,9 @@ class OTP_Controller extends BaseController {
         // Get the validated data
         $post = $this->validator->getValidated();
 
-        $model = model(OTP_Model::class);
+        $model = model(OtpModel::class);
+
+        //dd($model);
 
         $model->save([
             'email' => $post['email'],
