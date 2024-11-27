@@ -44,7 +44,7 @@ class OTP_Controller extends BaseController {
             'email' => $post['email'],
             'firstname' => $post['firstname'],
             'lastname' => $post['lastname'],
-            'newpassword' => $post['newpassword']
+            'newpassword' => $post['newpassword'],
         ]);
 
         return view('otp/success');
