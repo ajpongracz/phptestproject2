@@ -40,8 +40,6 @@ class OtpController extends BaseController {
 
         $model = model(OtpModel::class);
 
-        //dd($model);
-
         $model->save([
             'email' => $post['email'],
             'firstname' => $post['firstname'],
@@ -51,6 +49,20 @@ class OtpController extends BaseController {
 
         return view('otp/success');
     }
+
+    // TESTING link generation
+    // =============================
+    public function randomLink() {
+
+        // random alphanumeric generated string
+        helper('text');
+        $data = [
+            'randomString' => bin2hex(random_bytes(8))
+        ];
+
+        return view('otp/success', $data);
+    }
+    // =============================
 }
 
 ?>
