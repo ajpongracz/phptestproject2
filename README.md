@@ -1,1 +1,2 @@
-Placeholder 1
+A php/codeigniter project that stores a password, generates a dynamic link, and allows the password retrieval through validation of the user's full name and email.
+On retrieval, the page displaying the stored password automatically expires and the relevant database entry is automatically deleted.
