@@ -87,11 +87,6 @@ class OtpController extends BaseController {
             throw new PageNotFoundException('Oops...no stored passwords found.');
         }
 
-        // If found, add additional database items to the array
-        //$dbData['email'] = $subUrlMatch['email'];
-        //$dbData['firstname'] = $subUrlMatch['firstname'];
-        //$dbData['lastname'] = $subUrlMatch['lastname'];
-
         // Provide page to enter validation data
         helper('form');
         $input = $this->request->getPost(['email', 'firstname', 'lastname']);
@@ -103,14 +98,15 @@ class OtpController extends BaseController {
             $input['lastname'] == $subUrlMatch['lastname']
         ) {
 
-            // Add password to the array
-            //$dbData['newpassword'] = $subUrlMatch['newpassword'];
+            // All data validated - return the password
+            $dbData['newpassword'] = $subUrlMatch['newpassword'];
             
-            return view('otp/testing', $subUrlMatch);
+            return view('otp/retrieve/displaypassword', $dbData);
         }
 
         // If validation fails, return the form
         echo "Identity was not validated! Please make sure you're entering your information correctly.";
+        echo "<p>";
         return $this->getPw($dbData['suburl']);
         
     }

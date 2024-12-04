@@ -1,24 +1,47 @@
+<html>
+    
+<head>
+    <style type="text/css">
 
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
 
-<?= session()->getFlashdata('error') ?>
-<?php 
-//echo validation_list_errors() 
-?>
+    </style>
+</head>
 
-<form action="/otp/retrieve" method="post">
-    <?= csrf_field() ?>
+<body>
 
-    <label for="email">Email</label>
-    <input type="input" name="email" value="<?= set_value('email') ?>">
-    <br>
+    <?= session()->getFlashdata('error') ?>
+    <?php 
+    //echo validation_list_errors() 
+    ?>
 
-    <label for="firstname">First Name</label>
-    <input type="input" name="firstname" value="<?= set_value('firstname') ?>">
-    <br>
+    <form action="/otp/retrieve" method="post">
+        <?= csrf_field() ?>
 
-    <label for="lastname">Last Name</label>
-    <input type="input" name="lastname" value="<?= set_value('lastname') ?>">
-    <br>
+        <label for="email">Email</label>
+        <input type="input" name="email" value="<?= set_value('email') ?>">
+        <p>
 
-    <input type="submit" name="submit" value="Get new password">
-</form>
+        <label for="firstname">First Name</label>
+        <input type="input" name="firstname" value="<?= set_value('firstname') ?>">
+        <p>
+
+        <label for="lastname">Last Name</label>
+        <input type="input" name="lastname" value="<?= set_value('lastname') ?>">
+        <p>
+
+        <input type="submit" name="submit" value="Get new password">
+    </form>
+
+</body>
+
+</html>
+
