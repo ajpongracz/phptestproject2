@@ -18,6 +18,7 @@ class OtpController extends BaseController {
         return view('otp/storenewpassword');
     }
 
+    // Store new pw in db and generate dynamic sub URL to retrieve it
     public function storePw() {
 
         helper('form');
@@ -38,20 +39,39 @@ class OtpController extends BaseController {
         // Get the validated data
         $post = $this->validator->getValidated();
 
+        // Create random alphanumeric string
+        helper('text');
+        $dataRandomString = [
+            'randomString' => bin2hex(random_bytes(8))
+        ];
+
         $model = model(OtpModel::class);
 
+        // Save user input & random string into model
         $model->save([
             'email' => $post['email'],
             'firstname' => $post['firstname'],
             'lastname' => $post['lastname'],
             'newpassword' => $post['newpassword'],
+            'suburl' => $dataRandomString['randomString'],
         ]);
 
-        return view('otp/success');
+        // Pass random string to view for URL link
+        return view('otp/success', $dataRandomString);
     }
 
-    // TESTING link generation
-    // =============================
+    // Retrieve new password using link generated from storePw() and by using validating user data
+    public function showPw($dynamicSegment) {
+
+        $data = [
+            'suburl' => $dynamicSegment
+        ];
+
+        return view('otp/testing', $data);
+    }
+
+    // TESTING
+    // ==========================================================
     public function randomLink() {
 
         // random alphanumeric generated string
@@ -62,7 +82,20 @@ class OtpController extends BaseController {
 
         return view('otp/success', $data);
     }
-    // =============================
+
+    public function testRoute($var1, $var2, $var3) {
+
+        //dd($var1);
+
+        $data = [
+            'variable1' => $var1, 
+            'variable2' => $var2, 
+            'variable3' => $var3
+        ];
+
+        return view('otp/routetest', $data);
+    }
+    // ==========================================================
 }
 
 ?>
