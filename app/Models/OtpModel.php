@@ -8,7 +8,7 @@ class OtpModel extends Model {
 
     protected $table = 'otp';
     //protected $primaryKey = 'id';
-    protected $allowedFields = ['email', 'firstname', 'lastname', 'newpassword'];
+    protected $allowedFields = ['email', 'firstname', 'lastname', 'newpassword', 'suburl'];
 
 }
 

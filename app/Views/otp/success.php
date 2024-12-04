@@ -1,1 +1,0 @@
-<p>Password stored successfully.</p>
