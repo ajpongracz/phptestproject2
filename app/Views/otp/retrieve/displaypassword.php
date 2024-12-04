@@ -25,7 +25,7 @@
     <p id="countdown"></p>
 
     <script>
-    let timeLeft = 5;
+    let timeLeft = 10;
     const countdownElement = document.getElementById('countdown');
     countdownElement.style.color = "red";
 
@@ -48,7 +48,7 @@
     <script>
             setTimeout(function() {
                 window.location.href="https://phptestproject2.ddev.site/otp/expired";
-            }, 5000);
+            }, 10000);
     </script>
 
 </body>
