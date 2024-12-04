@@ -8,13 +8,15 @@ use App\Controllers\OtpController;
  */
 
 $routes->get('/', 'Home::index');
-
 $routes->get('otp', [OtpController::class, 'index']);
-$routes->get('otp/storenewpassword', [OtpController::class, 'new']);
-$routes->post('otp', [OtpController::class, 'storePw']);
 
-// Dynamic generated URL route
-$routes->get('otp/(:segment)', [OtpController::class, 'showPw']);
+// Store password
+$routes->get('otp/store/storenewpassword', [OtpController::class, 'newPw']);
+$routes->post('otp/store', [OtpController::class, 'storePw']);
+
+// Dynamic generated URL route / retrieve pw
+$routes->get('otp/retrieve/(:segment)', [OtpController::class, 'getPw/$1']);
+$routes->post('otp/retrieve', [OtpController::class, 'showPw']);
 
 // route testing
 // ===========================================================
