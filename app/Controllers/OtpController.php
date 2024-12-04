@@ -113,6 +113,9 @@ class OtpController extends BaseController {
             $input['lastname'] == $subUrlMatch['lastname']
         ) {
 
+            // Delete the database entry
+            $model->delete($subUrlMatch['id']);
+
             // All data validated - return the password
             $dbData['newpassword'] = $subUrlMatch['newpassword'];
 
@@ -124,6 +127,10 @@ class OtpController extends BaseController {
         echo "<p>";
         return $this->getPw($dbData['suburl']);
         
+    }
+
+    public function expiredLink() {
+        return view('otp/expired');
     }
 
     // TESTING

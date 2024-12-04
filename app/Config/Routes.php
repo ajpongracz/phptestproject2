@@ -17,6 +17,7 @@ $routes->post('otp/store', [OtpController::class, 'storePw']);
 // Dynamic generated URL route / retrieve pw
 $routes->get('otp/retrieve/(:segment)', [OtpController::class, 'getPw/$1']);
 $routes->post('otp/retrieve', [OtpController::class, 'showPw']);
+$routes->get('otp/expired', [OtpController::class, 'expiredLink']);
 
 // route testing
 // ===========================================================

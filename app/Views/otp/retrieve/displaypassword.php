@@ -25,7 +25,7 @@
     <p id="countdown"></p>
 
     <script>
-    let timeLeft = 30;
+    let timeLeft = 5;
     const countdownElement = document.getElementById('countdown');
     countdownElement.style.color = "red";
 
@@ -44,6 +44,12 @@
     <div style="background-color: green;">
     <p><?= $newpassword ?></p>
     </div>
+
+    <script>
+            setTimeout(function() {
+                window.location.href="https://phptestproject2.ddev.site/otp/expired";
+            }, 5000);
+    </script>
 
 </body>
 
