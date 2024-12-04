@@ -26,6 +26,8 @@
     <form action="/otp/retrieve" method="post">
         <?= csrf_field() ?>
 
+        <p>Please validate your personal details:</p>
+
         <label for="email">Email</label>
         <input type="input" name="email" value="<?= set_value('email') ?>">
         <p>

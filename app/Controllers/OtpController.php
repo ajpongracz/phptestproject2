@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\OtpModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
+use CodeIgniter\Database\Exceptions\DatabaseException;
 
 class OtpController extends BaseController {
 
@@ -24,6 +25,7 @@ class OtpController extends BaseController {
 
         helper('form');
 
+        // Get user input
         $data = $this->request->getPost(['email', 'firstname', 'lastname', 'newpassword']);
 
         // Validate data
@@ -48,14 +50,27 @@ class OtpController extends BaseController {
 
         $model = model(OtpModel::class);
 
-        // Save user input & random string into model
-        $model->save([
-            'email' => $post['email'],
-            'firstname' => $post['firstname'],
-            'lastname' => $post['lastname'],
-            'newpassword' => $post['newpassword'],
-            'suburl' => $dataRandomString['randomString'],
-        ]);
+        // Handle DatabaseException if email already exists in database (email is unique)
+        try {
+
+             // Save user input & random string into model
+            $model->save([
+                'email' => $post['email'],
+                'firstname' => $post['firstname'],
+                'lastname' => $post['lastname'],
+                'newpassword' => $post['newpassword'],
+                'suburl' => $dataRandomString['randomString'],
+            ]);       
+
+        } catch (DataBaseException $e) {
+
+            // If the email already exists, return the form
+            echo "Email already exists in the database.";
+            echo "<p>";
+            return $this->newPw();
+        }
+
+        
 
         // Pass random string to view for URL link
         return view('otp/store/success', $dataRandomString);
@@ -100,7 +115,7 @@ class OtpController extends BaseController {
 
             // All data validated - return the password
             $dbData['newpassword'] = $subUrlMatch['newpassword'];
-            
+
             return view('otp/retrieve/displaypassword', $dbData);
         }
 
